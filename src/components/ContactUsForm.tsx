@@ -1,6 +1,6 @@
 import axios from "axios";
-import CountryDropdown from "./COuntryDropDown"; // Make sure the import name is correct
-import { SubmitButton } from "./SubmitButton"; // Ensure this component is defined correctly
+import CountryDropdown from "./COuntryDropDown"; 
+import { SubmitButton } from "./SubmitButton"; 
 import { ChangeEvent, useState } from "react";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND;
@@ -23,7 +23,6 @@ export const ContactUsForm = () => {
             ...oldData,
             [name]: value,
         }));
-        console.log(name, value);
     };
 
     const validateForm = () => {
@@ -35,19 +34,17 @@ export const ContactUsForm = () => {
     };
 
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault(); // Prevent form default behavior
+        e.preventDefault(); 
         const error = validateForm();
         if (error) {
             setErrorMessage(error);
-            return; // Stop submission if there are errors
+            return; 
         }
-        setErrorMessage(''); // Clear error message if all fields are filled
+        setErrorMessage(''); 
 
         try {
             const response = await axios.post(`${BACKEND_URL}api/v1/user/form`, formData);
-            console.log(response.data);  // Log response data after successful submission
         } catch (error) {
-            console.error('Error submitting form:', error); // Handle and log errors
         }
     };
 
@@ -90,7 +87,7 @@ interface InputBoxType {
     placeholder: string;
     name: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    className?: string;  // Make className optional
+    className?: string;  
 }
 
 function InputBox({ placeholder, onChange, name, className }: InputBoxType) {

@@ -39,7 +39,6 @@ function CountryDropdown({ onChange }: CountryDropdownProps) {
     const handleChange = (option: CountryOption | null) => {
         if (option) {
             setSelectedCountry(option.value);
-            console.log(`Selected Country: ${option.label}, Calling Code: ${option.callingCode}`);
             onChange(option.label, option.callingCode);
         } else {
             setSelectedCountry(null);
