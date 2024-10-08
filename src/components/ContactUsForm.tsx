@@ -43,8 +43,9 @@ export const ContactUsForm = () => {
         setErrorMessage(''); 
 
         try {
-            const response = await axios.post(`${BACKEND_URL}api/v1/user/form`, formData);
+             await axios.post(`${BACKEND_URL}api/v1/user/form`, formData);
         } catch (error) {
+            return ;
         }
     };
 
