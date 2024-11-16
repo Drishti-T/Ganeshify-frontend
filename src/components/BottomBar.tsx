@@ -31,8 +31,8 @@ export const BottomBar = () => {
 
             </div>
             <div className="text-white font-light text-sm">
-                Office no. 5, 1st floor shreenathji complex,<br></br>
-                lalita chowkdi, katargam, Surat ,Gujarat , India <br>
+            Office no. 382, 3rd floor unique square,<br></br>
+            near Jahangirpura Bridge, katargam, Surat, Gujarat, India <br>
                 </br>
                 Pin code: 395004
             </div>
