@@ -8,8 +8,6 @@ import { Quote } from "../components/Quote"
 import image1 from '../assets/images/image.png'
 import image2 from '../assets/images/image (1).png'
 import image3 from '../assets/images/image (2).png'
-import image4 from '../assets/images/image (3).png'
-import image5 from '../assets/images/image (4).png'
 
 //app2
 import image6 from '../assets/images/image (5).png'
@@ -38,20 +36,13 @@ export const AboutUs = () => {
 
 
 
-                <div className="flex gap-4 flex-col ">    
-
-
+                <div className="flex gap-4 flex-col ">   
 
                     <CaseStudyCard images={[image1 , image2, image3]} />
                     <CaseStudyCard images={[image6 , image7, image8]} />
-                    <CaseStudyCard images={[image10 , image11 , image9]} />
-                
+                    <CaseStudyCard images={[image10 , image11 , image9]} />                
 
                 </div>
-
-
-
-
 
             </div>
 
