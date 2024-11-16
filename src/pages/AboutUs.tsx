@@ -3,9 +3,24 @@ import { CaseStudyCard } from "../components/CaseStudyCard"
 import { ProjectForUs } from "../components/ProjectForUs"
 import { Quote } from "../components/Quote"
 
-import cat from '../assets/images/cat.jpg'
-import gtr from '../assets/images/gtr.jpg'
-import girl2 from '../assets/images/girl2.jpg'
+
+//app 1
+import image1 from '../assets/images/image.png'
+import image2 from '../assets/images/image (1).png'
+import image3 from '../assets/images/image (2).png'
+import image4 from '../assets/images/image (3).png'
+import image5 from '../assets/images/image (4).png'
+
+//app2
+import image6 from '../assets/images/image (5).png'
+import image7 from '../assets/images/image (6).png'
+import image8 from '../assets/images/image (7).png'
+
+//app3
+import image9 from '../assets/images/image (8).png'
+import image10 from '../assets/images/image (9).png'
+import image11 from '../assets/images/image (10).png'
+
 import { BottomBar } from "../components/BottomBar"
 
 export const AboutUs = () => {
@@ -25,13 +40,13 @@ export const AboutUs = () => {
 
                 <div className="flex gap-4 flex-col ">
 
-                    <CaseStudyCard img={girl2}/>
-                    <CaseStudyCard img={gtr}/>
-                    <CaseStudyCard img={cat}/>
-                    <CaseStudyCard img={girl2}/>
+                    <CaseStudyCard img1={image1} img2={image2} img3={image3} />
+                    <CaseStudyCard img1={image6} img2={image7} img3={image8} />
+                    <CaseStudyCard img1={image10} img2={image9} img3={image11} />
+                 
                 </div>
 
-                
+
 
 
 
@@ -39,8 +54,8 @@ export const AboutUs = () => {
 
         </div>
         <div>
-                    <ProjectForUs />
-                </div>
+            <ProjectForUs />
+        </div>
         <div>
             <BottomBar />
         </div>
