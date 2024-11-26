@@ -4,20 +4,26 @@ import { ProjectForUs } from "../components/ProjectForUs"
 import { Quote } from "../components/Quote"
 
 
-//app 1
-import image1 from '../assets/images/image.png'
-import image2 from '../assets/images/image (1).png'
-import image3 from '../assets/images/image (2).png'
+//E-com-1
+import image1 from '../assets/images/1.jpg'
+import image2 from '../assets/images/2.jpg'
+import image3 from '../assets/images/3.jpg'
 
-//app2
-import image6 from '../assets/images/image (5).png'
-import image7 from '../assets/images/image (6).png'
-import image8 from '../assets/images/image (7).png'
+//E-Com-4
+import image4 from '../assets/images/4.jpg'
+import image5 from '../assets/images/5.jpg'
+import image6 from '../assets/images/6.jpg'
 
-//app3
-import image9 from '../assets/images/image (8).png'
-import image10 from '../assets/images/image (9).png'
-import image11 from '../assets/images/image (10).png'
+//Food-Order-App-2
+import image7 from '../assets/images/7.jpg'
+import image8 from '../assets/images/8.jpg'
+import image9 from '../assets/images/9.jpg'
+
+
+//Rent-App-3
+import image10 from '../assets/images/10.jpg'
+import image11 from '../assets/images/11.jpg'
+import image12 from '../assets/images/12.jpg'
 
 import { BottomBar } from "../components/BottomBar"
 
@@ -39,8 +45,9 @@ export const AboutUs = () => {
                 <div className="flex gap-4 flex-col ">   
 
                     <CaseStudyCard images={[image1 , image2, image3]} />
-                    <CaseStudyCard images={[image6 , image7, image8]} />
-                    <CaseStudyCard images={[image10 , image11 , image9]} />                
+                    <CaseStudyCard images={[image4 , image5, image6]} />
+                    <CaseStudyCard images={[image7 , image8, image9]} />
+                    <CaseStudyCard images={[image10 , image11 , image12]} />                
 
                 </div>
 

@@ -31,7 +31,7 @@ export const BottomBar = () => {
 
             </div>
             <div className="text-white font-light text-sm">
-            Office no. 382, 3rd floor unique square,<br></br>
+            Office no. 324, 3rd floor unique square,<br></br>
             near Jahangirpura Bridge, katargam, Surat, Gujarat, India <br>
                 </br>
                 Pin code: 395004
@@ -42,7 +42,9 @@ export const BottomBar = () => {
 
             Follow us
             <div className="flex   items-center gap-3">
+
                 <div className="w-[30px]">
+                    
                     <Link to="https://www.instagram.com/ganeshify.in/?igsh=MXgzbzg4M2lvbjByOQ%3D%3D" ><img src={instaIcon} className="w-full" /></Link>
                 </div>
                 <div className="w-[30px] ">

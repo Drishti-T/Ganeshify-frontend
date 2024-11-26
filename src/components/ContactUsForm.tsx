@@ -2,10 +2,14 @@ import axios from "axios";
 import CountryDropdown from "./COuntryDropDown"; 
 import { SubmitButton } from "./SubmitButton"; 
 import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND;
 
 export const ContactUsForm = () => {
+    
+    const [status, setStatus] = useState<"idle" | "loading" | "disabled">("idle");// status of the button
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -16,6 +20,7 @@ export const ContactUsForm = () => {
     });
 
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate(); 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -33,52 +38,113 @@ export const ContactUsForm = () => {
         return '';
     };
 
+    // const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    //     e.preventDefault(); 
+    //     const error = validateForm();
+    //     if (error) {
+    //         setErrorMessage(error);
+    //         return; 
+    //     }
+    //     setErrorMessage(''); 
+
+    //     try {
+    //          await axios.post(`${BACKEND_URL}api/v1/user/form`, formData);
+    //     } catch (error) {
+    //         return ;
+    //     }
+    // };
+
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault(); 
+        e.preventDefault();
+        if (status !== "idle") return; // Prevent further clicks during loading/disabled states
+
         const error = validateForm();
         if (error) {
             setErrorMessage(error);
-            return; 
+            return;
         }
-        setErrorMessage(''); 
+
+        setErrorMessage('');
+        setStatus("loading");
 
         try {
-             await axios.post(`${BACKEND_URL}api/v1/user/form`, formData);
+            await axios.post(`${BACKEND_URL}api/v1/user/form`, formData);
+            setStatus("disabled"); // Disable button after successful submission
+            navigate("/Submitted");
         } catch (error) {
-            return ;
+            setErrorMessage("Submission failed. Please try again.");
+            setStatus("idle"); // Allow retries on failure
         }
     };
 
     return (
+        // <div className="bg-zinc-100 w-screen sm:w-fit px-8 py-8 rounded-3xl border">
+        //     <div className="text-2xl font-semibold">
+        //         Collaborate with Ganeshify
+        //     </div>
+        //     {errorMessage && <div className="text-red-500">{errorMessage}</div>} {/* Display error message */}
+        //     <div className="flex flex-col sm:flex-row gap-4">
+        //         <div><InputBox className="w-full sm:w-[290px]" name={"firstName"} placeholder={"First Name"} onChange={handleChange} /></div>
+        //         <div><InputBox className="w-full sm:w-[290px]" name={"lastName"} placeholder={"Last Name"} onChange={handleChange} /></div>
+        //     </div>
+        //     <div>
+        //         <div><InputBox className="w-full" name={"email"} placeholder={"Email Address"} onChange={handleChange} /></div>
+        //     </div>
+        //     <div className="flex flex-col sm:flex-row gap-4">
+        //         <div><CountryDropdown onChange={(country: string) => {
+        //             setFormData(prevData => ({
+        //                 ...prevData,
+        //                 country: country, // Set the selected country
+        //             }));
+        //         }} /></div>
+        //         <div>
+        //             <InputBox className="w-full sm:w-[240px]" name={"phoneNumber"} placeholder={"Phone Number"} onChange={handleChange} />
+        //         </div>
+        //     </div>
+        //     <div>
+        //         <TextEditor name={"message"} onChange={handleChange} />
+        //     </div>
+          
+        //     <div>
+        //         <SubmitButton onClick={handleSubmit} />
+        //     </div>
+        // </div>
         <div className="bg-zinc-100 w-screen sm:w-fit px-8 py-8 rounded-3xl border">
-            <div className="text-2xl font-semibold">
-                Collaborate with Ganeshify
-            </div>
-            {errorMessage && <div className="text-red-500">{errorMessage}</div>} {/* Display error message */}
+            <div className="text-2xl font-semibold">Collaborate with Ganeshify</div>
+            {errorMessage && <div className="text-red-500">{errorMessage}</div>}
             <div className="flex flex-col sm:flex-row gap-4">
-                <div><InputBox className="w-full sm:w-[290px]" name={"firstName"} placeholder={"First Name"} onChange={handleChange} /></div>
-                <div><InputBox className="w-full sm:w-[290px]" name={"lastName"} placeholder={"Last Name"} onChange={handleChange} /></div>
-            </div>
-            <div>
-                <div><InputBox className="w-full" name={"email"} placeholder={"Email Address"} onChange={handleChange} /></div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-                <div><CountryDropdown onChange={(country: string) => {
-                    setFormData(prevData => ({
-                        ...prevData,
-                        country: country, // Set the selected country
-                    }));
-                }} /></div>
                 <div>
-                    <InputBox className="w-full sm:w-[240px]" name={"phoneNumber"} placeholder={"Phone Number"} onChange={handleChange} />
+                    <InputBox className="w-full sm:w-[290px]" name="firstName" placeholder="First Name" onChange={handleChange} />
+                </div>
+                <div>
+                    <InputBox className="w-full sm:w-[290px]" name="lastName" placeholder="Last Name" onChange={handleChange} />
                 </div>
             </div>
             <div>
-                <TextEditor name={"message"} onChange={handleChange} />
+                <div>
+                    <InputBox className="w-full" name="email" placeholder="Email Address" onChange={handleChange} />
+                </div>
             </div>
-          
+            <div className="flex flex-col sm:flex-row gap-4">
+                <div>
+                    <CountryDropdown
+                        onChange={(country: string) =>
+                            setFormData((prevData) => ({
+                                ...prevData,
+                                country: country,
+                            }))
+                        }
+                    />
+                </div>
+                <div>
+                    <InputBox className="w-full sm:w-[240px]" name="phoneNumber" placeholder="Phone Number" onChange={handleChange} />
+                </div>
+            </div>
             <div>
-                <SubmitButton onClick={handleSubmit} />
+                <TextEditor name="message" onChange={handleChange} />
+            </div>
+            <div>
+                <SubmitButton onClick={handleSubmit} status={status} />
             </div>
         </div>
     );
