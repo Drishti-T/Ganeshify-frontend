@@ -48,15 +48,15 @@ export const AppCard = ({ img, basis }: { img: string; basis: string }) => {
     setPromptOpen(true); // Open the prompt
   };
 
-  const closePrompt = () =>{
-    setPromptOpen(false); 
+  const closePrompt = () => {
+    setPromptOpen(false);
   }
 
   return (
     <div
       className={`flex-1 ${basis} sm:basis-1/2 rounded-xl relative group`}
     >
-      <div onClick={handleImageClick} 
+      <div onClick={handleImageClick}
         className="relative group-hover:scale-110 group-hover:z-10 group-hover:-translate-y-0 transition-all duration-300 cursor-pointer"
       >
         <img
@@ -66,39 +66,42 @@ export const AppCard = ({ img, basis }: { img: string; basis: string }) => {
       </div>
 
       {isPromptOpen && (
+
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
           onClick={closePrompt} // Close the prompt when clicking outside
         >
           <div
-            className="relative"
+            className="relative flex justify-center"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
           >
+
             <div
-              className="absolute left-72 bg-white p-4 rounded-xl shadow-lg z-50 flex justify-center"
-              style={{
-                position: 'relative',
-                maxWidth: '60%', // Prevent the image from becoming too large
-                maxHeight: '60%',
-              }}
-             
-            >              
+              className="absolute bg-white p-2 rounded-xl shadow-lg z-50 flex justify-center relative max-w-[90%] max-h-[90%] sm:max-w-[90%] sm:max-h-[90%] md:max-w-[90%]  md:max-h-[90%] lg:max-w-[65%] lg:max-h-[65%] xl:max-w-[60%] xl:max-h-[60%]"           
+
+            >
               <img
                 src={img}
                 className="rounded-xl w-auto h-auto object-contain"
                 alt="Enlarged image"
               />
+
+              <div className="absolute top-2 right-2 p-2">
+                <button
+                  onClick={closePrompt} // Close the prompt when clicked
+                  className="text-white bg-zinc-600 px-3 py-1 rounded-full"
+                >
+                  X
+                </button>
+              </div>
+
             </div>
-            <div className="absolute top-0 right-0 p-4">
-              <button
-                onClick={closePrompt} // Close the prompt when clicked
-                className="text-white bg-zinc-600 px-4 py-2 rounded-full"
-              >
-                X
-              </button>
-            </div>
+
+
           </div>
         </div>
+
+
       )}
     </div>
   );
