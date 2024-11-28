@@ -17,7 +17,7 @@ const options: OptionType[] = Object.keys(COUNTRIES).map(key => ({
 //custom style 
 // Define the custom styles with explicit types
 const customStyles: StylesConfig<OptionType> = {
-    option: (defaultStyles, state) => ({
+    option: (defaultStyles) => ({
         ...defaultStyles,
         width: "100%",
         margin: 0 ,

@@ -77,7 +77,7 @@ export const AppCard = ({ img, basis }: { img: string; basis: string }) => {
           >
 
             <div
-              className="absolute bg-white p-2 rounded-xl shadow-lg z-50 flex justify-center relative max-w-[90%] max-h-[90%] sm:max-w-[90%] sm:max-h-[90%] md:max-w-[90%]  md:max-h-[90%] lg:max-w-[65%] lg:max-h-[65%] xl:max-w-[60%] xl:max-h-[60%]"           
+              className="absolute bg-white p-2 rounded-xl shadow-lg z-50 flex justify-center relative max-w-[90%] max-h-[90%] sm:max-w-[90%] sm:max-h-[90%] md:max-w-[90%]  md:max-h-[90%] lg:max-w-[65%] lg:max-h-[65%] xl:max-w-[60%] xl:max-h-[60%]"          
 
             >
               <img
