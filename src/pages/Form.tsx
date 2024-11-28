@@ -4,11 +4,12 @@ import { ContactUsForm } from "../components/ContactUsForm"
 
 export const Form = () => {
     return <div>
-
-        <AppBar />
-        <div className="flex justify-center py-6">
-            <ContactUsForm />
+        <div>
+            <AppBar />
+            <div className="flex justify-center py-6">
+                <ContactUsForm />
+            </div>
+            <BottomBar />
         </div>
-        <BottomBar />
     </div>
 }

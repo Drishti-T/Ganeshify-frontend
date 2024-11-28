@@ -1,13 +1,14 @@
 import axios from "axios";
-import CountryDropdown from "./COuntryDropDown"; 
-import { SubmitButton } from "./SubmitButton"; 
+// import CountryDropdown from "./COuntryDropDown";
+import { SubmitButton } from "./SubmitButton";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CountryMenu } from "./CountryMenu";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND;
 
 export const ContactUsForm = () => {
-    
+
     const [status, setStatus] = useState<"idle" | "loading" | "disabled">("idle");// status of the button
 
     const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export const ContactUsForm = () => {
     });
 
     const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -77,6 +78,14 @@ export const ContactUsForm = () => {
         }
     };
 
+    // Update the formData state with the selected country
+    const handleCountryChange = (country: string) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            country: country,
+        }));
+    };
+
     return (
         // <div className="bg-zinc-100 w-screen sm:w-fit px-8 py-8 rounded-3xl border">
         //     <div className="text-2xl font-semibold">
@@ -104,7 +113,7 @@ export const ContactUsForm = () => {
         //     <div>
         //         <TextEditor name={"message"} onChange={handleChange} />
         //     </div>
-          
+
         //     <div>
         //         <SubmitButton onClick={handleSubmit} />
         //     </div>
@@ -125,19 +134,21 @@ export const ContactUsForm = () => {
                     <InputBox className="w-full" name="email" placeholder="Email Address" onChange={handleChange} />
                 </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:justify-between">
                 <div>
-                    <CountryDropdown
+                    {/* <CountryDropdown
                         onChange={(country: string) =>
                             setFormData((prevData) => ({
                                 ...prevData,
                                 country: country,
                             }))
                         }
-                    />
+                    /> */}
+                    <CountryMenu onChange={handleCountryChange}></CountryMenu>
+
                 </div>
                 <div>
-                    <InputBox className="w-full sm:w-[240px]" name="phoneNumber" placeholder="Phone Number" onChange={handleChange} />
+                    <InputBox className="w-full sm:w-[350px]" name="phoneNumber" placeholder="Phone Number" onChange={handleChange} />
                 </div>
             </div>
             <div>
@@ -154,7 +165,7 @@ interface InputBoxType {
     placeholder: string;
     name: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    className?: string;  
+    className?: string;
 }
 
 function InputBox({ placeholder, onChange, name, className }: InputBoxType) {
